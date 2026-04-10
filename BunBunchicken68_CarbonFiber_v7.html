@@ -1,0 +1,548 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"><title>BunBunchicken68's Value List</title><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet"><style>
+:root{
+  --cf1:#1a1a1a;--cf2:#111;--white:#fff;--grey:#aaa;--dimgrey:#555;--border:#333;
+  --shine:rgba(255,255,255,0.08);--card-bg:linear-gradient(160deg,#1c1c1c,#0f0f0f);--accent:#fff;
+
+  /* OMEGA (purple) theme */
+  --omega-primary:#7c3aed;
+  --omega-secondary:#5b21b6;
+  --omega-glow:rgba(124,58,237,0.35);
+  --omega-glow-soft:rgba(124,58,237,0.12);
+  --omega-border:#4c1d95;
+  --omega-text:#c4b5fd;
+  --omega-card-bg:linear-gradient(160deg,#1a1028 0%,#0d0a14 100%);
+  --omega-card-border:#2e1f4a;
+  --omega-beam:rgba(167,139,250,0.6);
+  --omega-fill:linear-gradient(90deg,#4c1d95,#c4b5fd);
+  --omega-tab-active:linear-gradient(180deg,#2d1b4e,#1a0f30);
+
+  /* TRANS (cyan/green) theme */
+  --trans-primary:#06b6d4;
+  --trans-secondary:#0891b2;
+  --trans-glow:rgba(6,182,212,0.35);
+  --trans-glow-soft:rgba(6,182,212,0.12);
+  --trans-border:#164e63;
+  --trans-text:#67e8f9;
+  --trans-card-bg:linear-gradient(160deg,#071e26 0%,#030d10 100%);
+  --trans-card-border:#0e3a47;
+  --trans-beam:rgba(103,232,249,0.6);
+  --trans-fill:linear-gradient(90deg,#164e63,#67e8f9);
+  --trans-tab-active:linear-gradient(180deg,#0e3a47,#041820);
+
+  /* active theme vars (switched by JS) */
+  --t-primary:#7c3aed;
+  --t-glow:rgba(124,58,237,0.35);
+  --t-glow-soft:rgba(124,58,237,0.12);
+  --t-border:#4c1d95;
+  --t-text:#c4b5fd;
+  --t-card-bg:linear-gradient(160deg,#1a1028 0%,#0d0a14 100%);
+  --t-card-border:#2e1f4a;
+  --t-fill:linear-gradient(90deg,#4c1d95,#c4b5fd);
+  --t-tab-active:linear-gradient(180deg,#2d1b4e,#1a0f30);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#0a0a0a;color:#fff;font-family:'Rajdhani',sans-serif;min-height:100vh;overflow-x:hidden;}
+
+/* BG transitions smoothly on tab change */
+body{transition:background 0.6s ease;}
+body.tab-omega{background:#08040f;}
+body.tab-trans{background:#030c10;}
+
+/* CARBON FIBER BACKGROUND */
+body::before{content:'';position:fixed;inset:0;z-index:0;
+  background-image:
+    repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(255,255,255,.012) 2px,rgba(255,255,255,.012) 4px),
+    repeating-linear-gradient(-45deg,transparent,transparent 2px,rgba(255,255,255,.012) 2px,rgba(255,255,255,.012) 4px),
+    repeating-linear-gradient(90deg,transparent,transparent 8px,rgba(255,255,255,.018) 8px,rgba(255,255,255,.02) 9px),
+    repeating-linear-gradient(0deg,transparent,transparent 8px,rgba(255,255,255,.018) 8px,rgba(255,255,255,.02) 9px);
+  background-size:9px 9px,9px 9px,9px 9px,9px 9px;
+  pointer-events:none;}
+
+/* THEME COLOR OVERLAY - shifts based on tab */
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%, var(--t-glow-soft), transparent 70%);
+  transition:background 0.7s ease;}
+
+/* SHINE BEAMS */
+.shine-wrap{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.beam{position:absolute;top:0;width:2px;height:100%;
+  background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,0) 10%,var(--t-beam,rgba(255,255,255,0.55)) 50%,rgba(255,255,255,0) 90%,transparent 100%);
+  filter:blur(2px);animation:beamMove 12s ease-in-out infinite;transition:background 0.6s;}
+.beam2{width:1px;opacity:.5;filter:blur(0.5px);animation:beamMove 16s ease-in-out infinite 4s;}
+.beam3{width:3px;opacity:.25;filter:blur(3px);animation:beamMove 14s ease-in-out infinite 2s;}
+@keyframes beamMove{0%{left:-5%;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:105%;opacity:0}}
+
+.page{position:relative;z-index:2;min-height:100vh;padding:12px 10px 60px;}
+.content{max-width:680px;margin:0 auto;}
+
+/* TOP BAR */
+.top-bar{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-bottom:8px;}
+.shiny-label{font-family:'Bebas Neue',sans-serif;font-size:13px;color:var(--t-text,#fff);letter-spacing:3px;
+  text-shadow:0 0 10px var(--t-glow,rgba(255,255,255,.5));transition:color 0.5s,text-shadow 0.5s;}
+.sw{position:relative;display:inline-block;width:36px;height:20px;}
+.sw input{opacity:0;width:0;height:0;}
+.sl{position:absolute;cursor:pointer;inset:0;background:#222;border:1px solid #444;border-radius:20px;transition:.3s;}
+.sl:before{position:absolute;content:"";height:14px;width:14px;left:3px;bottom:2px;background:#555;border-radius:50%;transition:.3s;}
+input:checked+.sl{background:#1a1a1a;border-color:var(--t-primary,#fff);}
+input:checked+.sl:before{transform:translateX(16px);background:var(--t-primary,#fff);}
+
+/* HEADER */
+header{text-align:center;padding:8px 0 18px;position:relative;}
+header::after{content:'';display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--t-primary,#fff),transparent);margin:12px auto 0;transition:background 0.5s;}
+.badge{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:4px;color:var(--t-text,#888);
+  border:1px solid var(--t-border,#333);padding:4px 14px;border-radius:2px;display:inline-block;margin-bottom:12px;
+  background:linear-gradient(135deg,#1a1a1a,#111);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 0 14px var(--t-glow-soft,transparent);
+  transition:color 0.5s,border-color 0.5s,box-shadow 0.5s;}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,5vw,2rem);color:#fff;
+  letter-spacing:4px;line-height:1.2;
+  text-shadow:0 0 30px var(--t-glow,rgba(255,255,255,.15)),0 2px 4px rgba(0,0,0,.8);
+  transition:text-shadow 0.5s;}
+
+/* CARBON DIVIDER */
+.cf-divider{height:1px;background:linear-gradient(90deg,transparent,var(--t-primary,#333),var(--t-text,#555),var(--t-primary,#333),transparent);margin:10px 0;transition:background 0.5s;}
+
+/* TABS */
+.tabs{display:flex;justify-content:center;gap:6px;margin-bottom:14px;}
+.tab-btn{font-family:'Bebas Neue',sans-serif;padding:8px 22px;cursor:pointer;
+  border:1px solid #333;background:linear-gradient(180deg,#1c1c1c,#111);
+  color:#555;font-size:13px;letter-spacing:2px;border-radius:3px;transition:all .25s;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);}
+.tab-btn:hover{border-color:#666;color:#aaa;}
+.tab-btn.active{color:var(--t-text,#fff);border-color:var(--t-primary,#888);
+  background:var(--t-tab-active,linear-gradient(180deg,#2a2a2a,#181818));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 20px var(--t-glow-soft,transparent),0 0 8px var(--t-glow-soft,transparent);
+  transition:all .25s;}
+
+/* TAB SWITCH ANIMATION - smooth fade only */
+#unitContainer{transition:opacity 0.2s ease;}
+#unitContainer.leaving{opacity:0;}
+#unitContainer.entering{opacity:0;}
+#unitContainer.visible{opacity:1;transition:opacity 0.3s ease;}
+
+/* CONTROLS */
+.controls{margin:0 0 14px;display:flex;gap:6px;}
+.search-input{flex:1;background:linear-gradient(180deg,#111,#0d0d0d);border:1px solid var(--t-border,#333);border-radius:3px;
+  color:#fff;padding:9px 12px;font-family:'Rajdhani',sans-serif;font-size:14px;outline:none;transition:.3s;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.5);}
+.search-input::placeholder{color:#555;}
+.search-input:focus{border-color:var(--t-primary,#666);box-shadow:inset 0 1px 3px rgba(0,0,0,.5),0 0 0 1px var(--t-glow-soft,rgba(255,255,255,.05));}
+.sort-select{background:linear-gradient(180deg,#111,#0d0d0d);border:1px solid var(--t-border,#333);border-radius:3px;
+  color:#aaa;padding:9px 10px;font-family:'Rajdhani',sans-serif;font-size:13px;cursor:pointer;outline:none;transition:border-color 0.5s;}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+
+/* ============ CARD ============ */
+.unit-card{
+  background:var(--t-card-bg,linear-gradient(160deg,#1c1c1c 0%,#0f0f0f 100%));
+  border:1px solid var(--t-card-border,#2a2a2a);border-radius:6px;overflow:visible;cursor:pointer;
+  transition:transform .2s,border-color .2s,box-shadow .2s,background 0.5s;
+  position:relative;}
+/* carbon fiber weave on card */
+.unit-card::before{content:'';position:absolute;inset:0;z-index:0;border-radius:6px;
+  background-image:
+    repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(255,255,255,.015) 2px,rgba(255,255,255,.015) 4px),
+    repeating-linear-gradient(-45deg,transparent,transparent 2px,rgba(255,255,255,.015) 2px,rgba(255,255,255,.015) 4px);
+  background-size:6px 6px;pointer-events:none;overflow:hidden;}
+/* top shine edge */
+.unit-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--t-text,rgba(255,255,255,.15)),transparent);pointer-events:none;z-index:1;transition:background 0.5s;}
+.unit-card:hover{transform:translateY(-5px) scale(1.02);border-color:var(--t-primary,#666);
+  box-shadow:0 0 24px var(--t-glow,rgba(255,255,255,.07)),0 12px 30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.08);}
+.unit-card:active{transform:scale(.97);}
+
+/* ====== SHINY EMOJI BADGE ====== */
+.shiny-badge{display:none;position:absolute;top:5px;left:7px;z-index:20;font-size:16px;line-height:1;pointer-events:none;
+  filter:drop-shadow(0 0 4px var(--t-primary,#fff));}
+body.shiny-on .shiny-badge{display:block;}
+/* shiny card gets a glowing colored border */
+body.shiny-on .unit-card{
+  border-color:var(--t-primary,#888);
+  box-shadow:0 0 14px var(--t-glow,rgba(255,255,255,.1)),inset 0 1px 0 rgba(255,255,255,.06);}
+
+.card-img-wrap{width:100%;height:110px;overflow:hidden;position:relative;
+  background:#080808;display:flex;align-items:center;justify-content:center;z-index:1;border-radius:5px 5px 0 0;}
+.card-img-wrap::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.7));pointer-events:none;}
+.card-img-wrap img{width:100%;height:100%;object-fit:contain;display:block;
+  transition:transform .3s;filter:brightness(.9) contrast(1.05);}
+.unit-card:hover .card-img-wrap img{transform:scale(1.1);filter:brightness(1.05) contrast(1.1);}
+.img-placeholder{position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:11px;color:#333;text-align:center;padding:8px;letter-spacing:2px;}
+
+.card-body{padding:9px 10px;border-left:3px solid var(--t-border,#444);position:relative;z-index:1;transition:border-color 0.5s;}
+.unit-card:hover .card-body{border-left-color:var(--t-primary,#888);}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:4px;margin-bottom:6px;}
+.unit-name{font-family:'Bebas Neue',sans-serif;font-size:13px;color:#fff;
+  line-height:1.3;flex:1;letter-spacing:1px;}
+
+/* STATUS BADGES */
+.status-badge{font-family:'Bebas Neue',sans-serif;font-size:9px;padding:2px 5px;
+  border-radius:2px;white-space:nowrap;flex-shrink:0;letter-spacing:1px;}
+.s-stable         {background:#0f1a0f;color:#6ee77a;border:1px solid #1f4a1f;}
+.s-stableoverpaid {background:#1a180a;color:#f0d060;border:1px solid #4a4010;}
+.s-unstable       {background:#1a0a0a;color:#e06060;border:1px solid #4a1515;}
+.s-decent         {background:#0a1220;color:#60a0f0;border:1px solid #153060;}
+.s-dropping       {background:#1a0808;color:#c04040;border:1px solid #3a1010;}
+.s-worthbuying    {background:#0a1a16;color:#40d0a0;border:1px solid #0e4a38;}
+.s-average        {background:#161616;color:#aaaaaa;border:1px solid #3a3a3a;}
+.s-unknown        {background:#111;color:#555;border:1px solid #2a2a2a;}
+
+.dem-label{font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--t-text,#444);margin-bottom:3px;letter-spacing:2px;transition:color 0.5s;}
+.dem-row{display:flex;align-items:center;gap:5px;margin-bottom:7px;}
+.dem-track{flex:1;height:5px;background:#1a1a1a;border-radius:2px;overflow:hidden;border:1px solid #2a2a2a;}
+.dem-fill{height:100%;border-radius:2px;background:var(--t-fill,linear-gradient(90deg,#444,#fff));transition:background 0.5s;}
+.dem-num{font-family:'Bebas Neue',sans-serif;font-size:13px;color:var(--t-text,#aaa);min-width:20px;text-align:right;transition:color 0.5s;}
+
+.val-row{display:flex;align-items:center;gap:6px;background:#0d0d0d;
+  padding:4px 7px;border-radius:3px;width:fit-content;border:1px solid var(--t-border,#2a2a2a);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);transition:border-color 0.5s;}
+.gem{width:15px;height:15px;object-fit:contain;filter:brightness(0) saturate(100%) invert(35%) sepia(80%) saturate(600%) hue-rotate(240deg) brightness(1.2);}
+.val-text{font-family:'Bebas Neue',sans-serif;font-size:13px;color:#fff;letter-spacing:1px;}
+
+.empty{text-align:center;color:#333;font-family:'Bebas Neue',sans-serif;
+  font-size:13px;padding:40px 0;grid-column:1/-1;letter-spacing:3px;}
+
+/* MODAL */
+#detailsModal{position:fixed;inset:0;background:rgba(0,0,0,.95);
+  display:none;justify-content:center;align-items:center;z-index:9999;padding:16px;
+  backdrop-filter:blur(6px);}
+.modal-box{
+  background:var(--t-card-bg,linear-gradient(160deg,#1c1c1c,#0d0d0d));
+  border:1px solid var(--t-primary,#3a3a3a);width:min(300px,90vw);border-radius:6px;
+  overflow:hidden;position:relative;
+  box-shadow:0 0 60px var(--t-glow,rgba(255,255,255,.04)),0 30px 60px rgba(0,0,0,.9);
+  transition:background 0.5s,border-color 0.5s,box-shadow 0.5s;}
+.modal-box::before{content:'';position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(255,255,255,.012) 2px,rgba(255,255,255,.012) 4px),
+    repeating-linear-gradient(-45deg,transparent,transparent 2px,rgba(255,255,255,.012) 2px,rgba(255,255,255,.012) 4px);
+  background-size:6px 6px;pointer-events:none;z-index:0;}
+.modal-box::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--t-text,rgba(255,255,255,.2)),transparent);pointer-events:none;z-index:1;transition:background 0.5s;}
+.modal-close{position:absolute;top:10px;right:12px;background:rgba(255,255,255,.05);
+  border:1px solid var(--t-border,#333);color:var(--t-text,#888);width:26px;height:26px;border-radius:3px;
+  cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:10;
+  font-family:'Bebas Neue',sans-serif;letter-spacing:0;transition:.2s;}
+.modal-close:hover{background:rgba(255,255,255,.1);color:#fff;border-color:var(--t-primary,#555);}
+.modal-img-wrap{width:100%;height:180px;background:#060606;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;}
+.modal-img-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;
+  background:linear-gradient(transparent,rgba(0,0,0,.6));pointer-events:none;}
+.modal-img-wrap img{max-width:100%;max-height:100%;object-fit:contain;filter:brightness(.95) contrast(1.05);}
+.modal-body{padding:16px;text-align:center;position:relative;z-index:2;}
+.modal-name{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#fff;
+  margin-bottom:14px;line-height:1.3;letter-spacing:2px;
+  text-shadow:0 0 20px var(--t-glow,rgba(255,255,255,.1));transition:text-shadow 0.5s;}
+.modal-val{display:flex;align-items:center;justify-content:center;gap:8px;
+  background:#0a0a0a;padding:8px 16px;border-radius:3px;margin-bottom:14px;
+  width:fit-content;margin-left:auto;margin-right:auto;border:1px solid var(--t-border,#333);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:border-color 0.5s;}
+.modal-val img{width:22px;height:22px;filter:brightness(0) saturate(100%) invert(35%) sepia(80%) saturate(600%) hue-rotate(240deg) brightness(1.2);}
+.modal-val span{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:18px;color:#fff;letter-spacing:2px;}
+.modal-dem-label{font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--t-text,#444);margin-bottom:6px;letter-spacing:3px;transition:color 0.5s;}
+.modal-dem-track{height:6px;background:#0a0a0a;border-radius:3px;overflow:hidden;border:1px solid var(--t-border,#2a2a2a);margin-bottom:5px;transition:border-color 0.5s;}
+.modal-dem-fill{height:100%;border-radius:3px;background:var(--t-fill,linear-gradient(90deg,#333,#fff));transition:background 0.5s;}
+.modal-dem-num{font-family:'Bebas Neue',sans-serif;font-size:15px;color:var(--t-text,#888);margin-bottom:12px;letter-spacing:2px;transition:color 0.5s;}
+
+/* Modal open animation */
+@keyframes modalIn{0%{opacity:0;transform:scale(0.88) translateY(20px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+.modal-box.open{animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards;}
+
+@keyframes cardPop{0%{transform:scale(1)}40%{transform:translateY(-6px) scale(1.03)}100%{transform:translateY(0) scale(1)}}
+.pop{animation:cardPop .3s ease;}
+
+@media(orientation:landscape)and(max-height:500px){.grid{grid-template-columns:repeat(4,1fr)}.card-img-wrap{height:65px}header{padding:3px 0 6px}}
+@media(orientation:landscape)and(min-height:500px){.grid{grid-template-columns:repeat(3,1fr)}.card-img-wrap{height:100px}}
+@media(min-width:580px){.grid{grid-template-columns:repeat(3,1fr)}.card-img-wrap{height:120px}}
+@media(max-width:340px){.card-body{padding:6px 7px}.tab-btn{padding:6px 14px}}
+</style></head><body class="tab-omega">
+
+<div class="shine-wrap">
+  <div class="beam" style="animation-delay:0s"></div>
+  <div class="beam2" style="animation-delay:2s"></div>
+  <div class="beam3" style="animation-delay:4s"></div>
+</div>
+
+<div class="page"><div class="content">
+  <div class="top-bar">
+    <span class="shiny-label">SHINY ✦</span>
+    <label class="sw"><input type="checkbox" id="shinyToggle" onchange="toggleShiny()"><span class="sl"></span></label>
+  </div>
+  <header>
+    <div class="badge">OFFICIAL VALUE LIST</div>
+    <h1>BunBunchicken68's<br>Value List</h1>
+  </header>
+  <div class="cf-divider"></div>
+  <div class="tabs" style="margin-top:12px">
+    <button id="omegaTab" class="tab-btn active" onclick="setTab('omega')">⬡ Omega</button>
+    <button id="transTab" class="tab-btn" onclick="setTab('trans')">◈ Transcendent</button>
+  </div>
+  <div class="controls">
+    <input class="search-input" id="searchInput" type="text" placeholder="Search units..." oninput="refresh()">
+    <select class="sort-select" id="sortSelect" onchange="refresh()">
+      <option value="default">Default</option>
+      <option value="dem-high">Demand ↑</option>
+      <option value="dem-low">Demand ↓</option>
+      <option value="name">A – Z</option>
+    </select>
+  </div>
+  <div id="unitContainer" class="grid visible"></div>
+</div></div>
+
+<div id="detailsModal" onclick="closeModal(event)">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div class="modal-img-wrap"><img id="mImg" src="" alt="unit"></div>
+    <div class="modal-body">
+      <div class="modal-name" id="mName"></div>
+      <div class="modal-val"><img id="mGem" src="https://i.imgur.com/ZEP1BOl.png" alt="gem"><span id="mVal"></span></div>
+      <div class="modal-dem-label">DEMAND</div>
+      <div class="modal-dem-track"><div class="modal-dem-fill" id="mDemFill"></div></div>
+      <div class="modal-dem-num" id="mDemNum"></div>
+      <div id="mStatus" class="status-badge" style="display:inline-block;margin-top:4px"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== AUDIO ENGINE ===== */
+var GEM='https://i.imgur.com/ZEP1BOl.png',currentTab='omega',AC=null,isShiny=false;
+function getAC(){if(!AC)try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}return AC}
+
+function tone(freq,dur,vol,type,detune){
+  try{
+    var ac=getAC();if(!ac)return;
+    var o=ac.createOscillator(),g=ac.createGain(),filt=ac.createBiquadFilter();
+    filt.type='lowpass';filt.frequency.value=3000;
+    o.connect(filt);filt.connect(g);g.connect(ac.destination);
+    o.type=type||'sine';o.frequency.value=freq;
+    if(detune)o.detune.value=detune;
+    g.gain.setValueAtTime(0,ac.currentTime);
+    g.gain.linearRampToValueAtTime(vol||.1,ac.currentTime+0.01);
+    g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+dur);
+    o.start();o.stop(ac.currentTime+dur+0.01);
+  }catch(e){}
+}
+
+function playHover(){tone(220,.08,.03,'sine');tone(330,.08,.02,'sine',700);}
+
+function playClick(){
+  tone(80,.12,.09,'square');
+  setTimeout(function(){tone(160,.1,.06,'sine');},30);
+  setTimeout(function(){tone(240,.12,.04,'triangle');},80);
+}
+
+function playTabSwitch(toOmega){
+  tone(300,.15,.06,'sine');
+  setTimeout(function(){tone(200,.2,.05,'sine')},50);
+  setTimeout(function(){tone(140,.25,.04,'sine')},120);
+}
+
+function playShinyOn(){
+  var notes=[220,294,370,440,554];
+  notes.forEach(function(n,i){setTimeout(function(){tone(n,.2,.05,'sine')},i*60)});
+}
+function playShinyOff(){
+  var notes=[554,440,370,294,220];
+  notes.forEach(function(n,i){setTimeout(function(){tone(n,.15,.04,'sine')},i*50)});
+}
+
+function playOpen(){
+  tone(196,.3,.07,'sine');
+  setTimeout(function(){tone(294,.25,.05,'sine')},100);
+  setTimeout(function(){tone(392,.2,.04,'sine')},220);
+}
+
+function playClose(){tone(392,.06,.06,'sine');setTimeout(function(){tone(196,.12,.05,'sine')},50);}
+
+/* ===== THEME ENGINE ===== */
+var OMEGA_VARS={
+  '--t-primary':'#7c3aed',
+  '--t-glow':'rgba(124,58,237,0.35)',
+  '--t-glow-soft':'rgba(124,58,237,0.10)',
+  '--t-border':'#4c1d95',
+  '--t-text':'#c4b5fd',
+  '--t-card-bg':'linear-gradient(160deg,#1a1028 0%,#0d0a14 100%)',
+  '--t-card-border':'#2e1f4a',
+  '--t-fill':'linear-gradient(90deg,#4c1d95,#c4b5fd)',
+  '--t-tab-active':'linear-gradient(180deg,#2d1b4e,#1a0f30)',
+  '--t-beam':'rgba(167,139,250,0.55)'
+};
+var TRANS_VARS={
+  '--t-primary':'#06b6d4',
+  '--t-glow':'rgba(6,182,212,0.35)',
+  '--t-glow-soft':'rgba(6,182,212,0.10)',
+  '--t-border':'#164e63',
+  '--t-text':'#67e8f9',
+  '--t-card-bg':'linear-gradient(160deg,#071e26 0%,#030d10 100%)',
+  '--t-card-border':'#0e3a47',
+  '--t-fill':'linear-gradient(90deg,#164e63,#67e8f9)',
+  '--t-tab-active':'linear-gradient(180deg,#0e3a47,#041820)',
+  '--t-beam':'rgba(103,232,249,0.55)'
+};
+
+function applyTheme(vars){
+  var root=document.documentElement;
+  Object.keys(vars).forEach(function(k){root.style.setProperty(k,vars[k]);});
+}
+
+/* ===== SHINY BADGE BUILDER ===== */
+function buildShinyBadge(){
+  var b=document.createElement('div');
+  b.className='shiny-badge';b.textContent='⭐';
+  return b;
+}
+
+/* ===== SHINY TOGGLE ===== */
+function toggleShiny(){
+  isShiny=document.getElementById('shinyToggle').checked;
+  if(isShiny){document.body.classList.add('shiny-on');playShinyOn();}
+  else{document.body.classList.remove('shiny-on');playShinyOff();}
+}
+
+/* ===== TAB SWITCH ===== */
+function setTab(t){
+  if(t===currentTab)return;
+  var toOmega=(t==='omega');
+  playTabSwitch(toOmega);
+  // animate out
+  var container=document.getElementById('unitContainer');
+  container.classList.remove('visible');
+  container.classList.add('leaving');
+
+  setTimeout(function(){
+    currentTab=t;
+    // switch theme
+    applyTheme(toOmega?OMEGA_VARS:TRANS_VARS);
+    document.body.className=(isShiny?'shiny-on ':'')+(toOmega?'tab-omega':'tab-trans');
+    // update tab styles
+    document.getElementById('omegaTab').className='tab-btn'+(t==='omega'?' active':'');
+    document.getElementById('transTab').className='tab-btn'+(t==='trans'?' active':'');
+    // rebuild content with entering anim
+    container.classList.remove('leaving');
+    container.classList.add('entering');
+    refresh();
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        container.classList.remove('entering');
+        container.classList.add('visible');
+      });
+    });
+  },180);
+}
+
+/* ===== DATA ===== */
+var units={omega:{base:[
+{name:"Nightmare Ball",val:"17.5M-18.5M",dem:6.7,status:"Stable",img:"https://i.imgur.com/T9mloeE.png"},
+{name:"Overclock Overlord",val:"8M-9.5M",dem:7.0,status:"Stable",img:"https://i.imgur.com/J0no2Qj.jpeg"},
+{name:"Temple Ball",val:"10M",dem:2.0,status:"Unstable",img:"https://i.imgur.com/BbYRbYr.jpeg"},
+{name:"Golem Ball",val:"4.3M",dem:4.0,status:"Stable/Overpaid",img:"https://i.imgur.com/t4gfw47.png"},
+{name:"The Frozen One",val:"2.8M-3M",dem:7.0,status:"Decent",img:"https://i.imgur.com/MeDWiXP.png"},
+{name:"Forest Ball",val:"2.9M",dem:3.0,status:"Dropping",img:"https://i.imgur.com/JT9PYbc.jpeg"},
+{name:"Shadow Prince",val:"2.2M-2.4M",dem:6.5,status:"Unstable",img:"https://i.imgur.com/71AaVhJ.png"},
+{name:"Omega Knight",val:"2.4M",dem:5.0,status:"Dropping",img:"https://i.imgur.com/EJlkeK2.png"},
+{name:"Mecha Ball",val:"1.5M-1.6M",dem:8.0,status:"Stable",img:"https://i.imgur.com/yjmTZpV.png"}
+],shiny:[
+{name:"Void",val:"65M-70M",dem:10,status:"Stable",img:"https://i.imgur.com/5JHgs9x.png"},
+{name:"OmegaKnight (OMK)",val:"110M-115M",dem:10,status:"Stable",img:"https://i.imgur.com/3fcSd08.png"},
+{name:"TheFrozenOne (TFO)",val:"130M-140M",dem:10,status:"Stable",img:"https://i.imgur.com/YeqJzz2.jpeg"},
+{name:"Temple",val:"Owner Choice",dem:10,status:"Stable",img:"https://i.imgur.com/BbYRbYr.jpeg"},
+{name:"Forest",val:"Owner Choice",dem:10,status:"Unstable",img:"https://i.imgur.com/7QDOeeE.jpeg"},
+{name:"Golem",val:"Owner Choice",dem:10,status:"Stable",img:"https://i.imgur.com/NNPWHMS.png"},
+{name:"Overclocked Overlord",val:"Owner Choice",dem:10,status:"Stable",img:"https://i.imgur.com/btUklDn.jpeg"},
+{name:"Nightmare",val:"Owner Choice",dem:10,status:"Unknown",img:"https://i.imgur.com/khAWud4.png"}
+]},trans:{base:[
+{name:"ShowMan",val:"90k-100k",dem:1,status:"Dropping",img:"https://i.imgur.com/ohwLuAw.jpeg"},
+{name:"Plasma Ball",val:"100k-150k",dem:5,status:"Dropping",img:"https://i.imgur.com/Ao7zfUQ.jpeg"},
+{name:"LaserMiniGunner (LMG)",val:"190k-200k",dem:8.9,status:"Worth Buying",img:"https://i.imgur.com/RgFPFCQ.jpeg"},
+{name:"Meteor",val:"205k",dem:8.5,status:"Stable",img:"https://i.imgur.com/GZ9GspK.jpeg"},
+{name:"Robo Santa",val:"205k",dem:4,status:"Stable",img:"https://i.imgur.com/xiRmROg.jpeg"},
+{name:"Mummy Ball",val:"350k-450k",dem:5.2,status:"Unstable",img:"https://i.imgur.com/rz18Qfb.jpeg"},
+{name:"Drone Ball",val:"450k-550k",dem:7.8,status:"Stable",img:"https://i.imgur.com/OjqElNG.jpeg"},
+{name:"Jester Ball",val:"350k-450k",dem:9,status:"Stable",img:"https://i.imgur.com/3oLP9V0.jpeg"},
+{name:"Blizzard Ball",val:"350k-400k",dem:7.2,status:"Stable",img:"https://i.imgur.com/mPnZv3O.jpeg"},
+{name:"Driller Ball",val:"1M-1.2M",dem:9.8,status:"Stable",img:"https://i.imgur.com/c83iTD3.jpeg"},
+{name:"Krampus Ball",val:"900k-1.4M",dem:"?",status:"Stable",img:""},
+{name:"Voodoo Ball",val:"?",dem:"?",status:"Unknown",img:"https://i.imgur.com/RgUOHXK.png"},
+{name:"Queen of Hearts",val:"?",dem:"?",status:"Unknown",img:"https://i.imgur.com/4IS4QzH.jpeg"},
+{name:"King of Hearts",val:"?",dem:"?",status:"Unknown",img:""}
+],shiny:[
+{name:"Shiny ShowMan",val:"20M-25M",dem:9,status:"Stable",img:"https://i.imgur.com/8B6pZ8P.png"},
+{name:"Shiny LMG",val:"35M-40M",dem:10,status:"Stable",img:"https://i.imgur.com/5u9yXzG.png"}
+]}};
+
+function sClass(s){return 's-'+s.toLowerCase().replace(/[\/\s]/g,'');}
+
+function refresh(){
+  var shiny=document.getElementById('shinyToggle').checked,
+      q=document.getElementById('searchInput').value.toLowerCase(),
+      sort=document.getElementById('sortSelect').value,
+      c=document.getElementById('unitContainer');
+  c.innerHTML='';
+  var filtered=(shiny?units[currentTab].shiny:units[currentTab].base).filter(function(u){
+    return u.name.toLowerCase().indexOf(q)!==-1;
+  });
+  if(sort==='dem-high')filtered.sort(function(a,b){return (b.dem==='?'?-1:b.dem)-(a.dem==='?'?-1:a.dem)});
+  else if(sort==='dem-low')filtered.sort(function(a,b){return (a.dem==='?'?-1:a.dem)-(b.dem==='?'?-1:b.dem)});
+  else if(sort==='name')filtered.sort(function(a,b){return a.name.localeCompare(b.name)});
+  if(!filtered.length){
+    var e=document.createElement('div');e.className='empty';e.textContent='NO UNITS FOUND';c.appendChild(e);return;
+  }
+  filtered.forEach(function(u){
+    var card=document.createElement('div');card.className='unit-card';
+    card.appendChild(buildShinyBadge());
+    var iw=document.createElement('div');iw.className='card-img-wrap';
+    var img=document.createElement('img');img.alt=u.name;img.src=u.img;
+    var ph=document.createElement('div');ph.className='img-placeholder';ph.textContent=u.name;
+    img.onerror=function(){this.style.display='none';ph.style.display='flex';};
+    iw.appendChild(img);iw.appendChild(ph);
+    var body=document.createElement('div');body.className='card-body';
+    var top=document.createElement('div');top.className='card-top';
+    var nm=document.createElement('div');nm.className='unit-name';nm.textContent=u.name;
+    var bdg=document.createElement('span');bdg.className='status-badge '+sClass(u.status);bdg.textContent=u.status;
+    top.appendChild(nm);top.appendChild(bdg);
+    var dl=document.createElement('div');dl.className='dem-label';dl.textContent='DEMAND';
+    var dr=document.createElement('div');dr.className='dem-row';
+    var tr=document.createElement('div');tr.className='dem-track';
+    var fi=document.createElement('div');fi.className='dem-fill';fi.style.width=(u.dem==='?'?0:u.dem*10)+'%';
+    tr.appendChild(fi);
+    var dn=document.createElement('span');dn.className='dem-num';dn.textContent=u.dem;
+    dr.appendChild(tr);dr.appendChild(dn);
+    var vr=document.createElement('div');vr.className='val-row';
+    var gi=document.createElement('img');gi.className='gem';gi.src=GEM;gi.alt='gem';
+    var vs=document.createElement('span');vs.className='val-text';vs.textContent=u.val;
+    vr.appendChild(gi);vr.appendChild(vs);
+    body.appendChild(top);body.appendChild(dl);body.appendChild(dr);body.appendChild(vr);
+    card.appendChild(iw);card.appendChild(body);
+    card.addEventListener('mouseenter',playHover);
+    card.addEventListener('click',function(){
+      playOpen();
+      card.classList.remove('pop');void card.offsetWidth;card.classList.add('pop');
+      openModal(u);
+    });
+    c.appendChild(card);
+  });
+}
+
+function openModal(u){
+  document.getElementById('mImg').src=u.img;
+  document.getElementById('mName').textContent=u.name;
+  document.getElementById('mVal').textContent=u.val;
+  document.getElementById('mDemFill').style.width=(u.dem==='?'?0:u.dem*10)+'%';
+  document.getElementById('mDemNum').textContent=u.dem+' / 10';
+  var ms=document.getElementById('mStatus');ms.textContent=u.status;ms.className='status-badge '+sClass(u.status);
+  var modal=document.getElementById('detailsModal');
+  var box=document.getElementById('modalBox');
+  modal.style.display='flex';
+  box.classList.remove('open');void box.offsetWidth;box.classList.add('open');
+}
+function closeModal(e){if(e.target===document.getElementById('detailsModal'))closeModalDirect();}
+function closeModalDirect(){playClose();document.getElementById('detailsModal').style.display='none';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModalDirect();});
+
+// init omega theme
+applyTheme(OMEGA_VARS);
+refresh();
+</script></body></html>
